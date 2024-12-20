@@ -10,17 +10,27 @@
 <body>
 <div class="container pt-4">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h1>SRT 字幕解析器</h1>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data">
+                    <form>
                         {% csrf_token %}
                         <input type="file" name="file" id="file" accept=".srt" required />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form>
                         <label for="offset">时间偏移</label>
-                        <input type="number" name="offset" id="offset" placeholder="" required />ms
+                        <input type="number" name="offsetS" id="offset-s" placeholder="秒" required />s&nbsp;
+                        <input type="number" name="offsetMs" id="offset-ms" placeholder="毫秒" required />ms&nbsp;
+                        <input type="button" id="offset-btn" value="设置"/>
                     </form>
                 </div>
             </div>
@@ -31,7 +41,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="table-container">
                         <table class="table table-striped table-sm" id="result">
                             <thead>
                             <tr>

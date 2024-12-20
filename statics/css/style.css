@@ -1,5 +1,6 @@
-#result {
-
+#table-container {
+    max-height: 450px;
+    overflow-y: auto;
 }
 
 #result th:last-child, #result td:last-child {
