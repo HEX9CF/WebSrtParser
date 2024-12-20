@@ -13,18 +13,18 @@ CONTENT = r".*"
 
 def parse_srt(file):
     subtitles = []
-    subtitle = Subtitle()
+    subtitle = None
 
     for line in file.readlines():
-        line = line.decode('utf-8')
+        # print(line)
+        line = line.decode('utf-8').lstrip('\ufeff')
         line = line.strip()
         if not line:
             if subtitle and subtitle.index != -1:
                 subtitles.append(subtitle)
                 subtitle = Subtitle()
-            continue
-
-        if line.isdigit():
+        elif line.isdigit():
+            subtitle = Subtitle()
             subtitle.index = int(line)
         elif re.match(TIME, line):
             start_time, end_time = line.split(' --> ')
