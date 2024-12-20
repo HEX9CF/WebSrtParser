@@ -1,11 +1,7 @@
 let fileInput = document.getElementById("file") as HTMLInputElement;
-let submitBtn = document.getElementById("submit") as HTMLButtonElement;
 let tokenInput = document.getElementsByName("csrfmiddlewaretoken")[0] as HTMLInputElement;
-let resultTbl = document.getElementById("result") as HTMLTableElement;
 
-submitBtn.onclick = (e) => {
-    e.preventDefault()
-
+fileInput.onchange = () => {
     if (fileInput.files?.length) {
         let file = fileInput.files[0];
         let formData = new FormData();
@@ -22,7 +18,8 @@ submitBtn.onclick = (e) => {
             .then((data) => {
                 console.log(data);
                 if (data['code'] === 1) {
-                    loadTable(data['data']);
+                    tableData = data['data'];
+                    loadTable(tableData, offset);
                 } else {
                     alert("解析失败：" + data['msg']);
                 }
@@ -34,15 +31,3 @@ submitBtn.onclick = (e) => {
         alert("请选择文件");
     }
 };
-
-function loadTable(data: any[]) {
-    let tbody = resultTbl.getElementsByTagName("tbody")[0] as HTMLTableSectionElement;
-
-    data.forEach((item) => {
-        let row = tbody.insertRow();
-        row.insertCell(0).innerText = item['index'];
-        row.insertCell(1).innerText = item['start_time'];
-        row.insertCell(2).innerText = item['end_time'];
-        row.insertCell(3).innerText = item['content'];
-    })
-}

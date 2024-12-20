@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>字幕解析器</title>
-    <link rel="stylesheet" href="/static/css/style.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src="/static/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container pt-4">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h1>SRT 字幕解析器</h1>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="file" name="file" id="file" accept=".srt" required />
-                        <button id="submit">解析</button>
+                        <label for="offset">时间偏移</label>
+                        <input type="number" name="offset" id="offset" placeholder="" required />ms
                     </form>
                 </div>
             </div>
@@ -51,4 +52,6 @@
 </div>
 </body>
 <script src="/static/js/submit.js"></script>
+<script src="/static/js/table.js"></script>
+<script src="/static/js/offset.js"></script>
 </html>
