@@ -1,15 +1,16 @@
-from utils.parser import parse_srt
+# This is a sample Python script.
 
-file_path = "data/subtitle.srt"
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-file = open(file_path, mode="r")
-# print(file.read())
 
-def main():
-    subtitles = parse_srt(file)
-    # print(subtitles)
-    for subtitle in subtitles:
-        print(subtitle.__dict__)
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-if __name__ == "__main__":
-    main()
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
