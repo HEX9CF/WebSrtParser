@@ -24,4 +24,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home, name="hello"),
     path("api/parse", controllers.parse, name="parse"),
+    path("api/save", controllers.save, name="save"),
 ]

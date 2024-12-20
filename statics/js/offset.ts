@@ -17,5 +17,19 @@ offsetBtn.onclick = () => {
     }
     offset = seconds * 1000 + milliseconds;
     console.log("时间偏移", offset);
-    loadTable(tableData, offset);
+
+    for (let i = 0; i < subtitles.length; i++) {
+        subtitles[i]['start_time'] = updateTime(subtitles[i]['start_time'], offset);
+        subtitles[i]['end_time'] = updateTime(subtitles[i]['end_time'], offset);
+    }
+
+    loadTable(subtitles);
 }
+
+// HH:MM:SS.sss
+function updateTime(timeStr: string, offset: number): string {
+    let date = new Date(`1970-01-01T${timeStr}Z`);
+    date.setTime(date.getTime() + offset);
+    return date.toISOString().substring(11, 23);
+}
+

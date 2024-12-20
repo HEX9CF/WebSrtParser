@@ -1,8 +1,15 @@
 let resultTbl = document.getElementById("result") as HTMLTableElement;
 
-let tableData:[] = []
+interface ISubtitle {
+    index: number;
+    start_time: string;
+    end_time: string;
+    content: string;
+}
 
-function loadTable(data: any[], offset: number) {
+let subtitles: ISubtitle[] = []
+
+function loadTable(data: any[]) {
     let tbody = resultTbl.getElementsByTagName("tbody")[0] as HTMLTableSectionElement;
     tbody.innerHTML = "";
 
@@ -10,17 +17,15 @@ function loadTable(data: any[], offset: number) {
     data.forEach((item) => {
         let row = tbody.insertRow();
         row.insertCell(0).innerText = item['index'];
-        row.insertCell(1).innerText = formatTime(item['start_time'], offset);
-        row.insertCell(2).innerText = formatTime(item['end_time'], offset);
+        row.insertCell(1).innerText = formatTime(item['start_time']);
+        row.insertCell(2).innerText = formatTime(item['end_time']);
         row.insertCell(3).innerHTML = item['content'];
     })
 }
 
 // HH:MM:SS.sss
-function formatTime(timeStr: string, offset: number): string {
+function formatTime(timeStr: string): string {
     let date = new Date(`1970-01-01T${timeStr}Z`);
-    // 偏移量为毫秒
-    date.setMilliseconds(date.getMilliseconds() + offset);
     return date.toISOString().substring(11, 23);
 }
 

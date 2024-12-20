@@ -6,7 +6,7 @@ fileInput.onchange = () => {
         let file = fileInput.files[0];
         let formData = new FormData();
         formData.append("file", file);
-        console.log(file)
+        console.log("上传文件", file.name);
 
         fetch("/api/parse", {
             method: "POST",
@@ -18,8 +18,8 @@ fileInput.onchange = () => {
             .then((data) => {
                 console.log(data);
                 if (data['code'] === 1) {
-                    tableData = data['data'];
-                    loadTable(tableData, offset);
+                    subtitles = data['data'];
+                    loadTable(subtitles);
                 } else {
                     alert("解析失败：" + data['msg']);
                 }
