@@ -1,0 +1,7 @@
+#result {
+
+}
+
+#result th:last-child, #result td:last-child {
+    width: auto;
+}
