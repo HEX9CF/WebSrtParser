@@ -18,9 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from WebSrtParser import views
+from WebSrtParser import views, controllers
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.hello, name="hello"),
+    path("", views.home, name="hello"),
+    path("api/parse", controllers.parse, name="parse"),
 ]

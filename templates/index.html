@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SRT 字幕解析器</h1>
+            <hr/>
+        </div>
+        <div>
+            <form action="/api/parse" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="file" id="file" accept=".srt" required>
+                <button type="submit">解析</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
