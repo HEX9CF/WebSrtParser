@@ -12,7 +12,7 @@ function loadTable(data: any[], offset: number) {
         row.insertCell(0).innerText = item['index'];
         row.insertCell(1).innerText = formatTime(item['start_time'], offset);
         row.insertCell(2).innerText = formatTime(item['end_time'], offset);
-        row.insertCell(3).innerText = item['content'];
+        row.insertCell(3).innerHTML = item['content'];
     })
 }
 
