@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 from model.subtitle import Subtitle
 
@@ -26,8 +27,8 @@ def parse_srt(file):
             subtitle.index = int(line)
         elif re.match(TIME, line):
             start_time, end_time = line.split(' --> ')
-            subtitle.start_time = start_time
-            subtitle.end_time = end_time
+            subtitle.start_time = parse_time(start_time)
+            subtitle.end_time = parse_time(end_time)
         else:
             if subtitle.content == "":
                 subtitle.content = line
@@ -39,6 +40,7 @@ def parse_srt(file):
 
     return subtitles
 
-
+def parse_time(time_str):
+    return datetime.strptime(time_str, "%H:%M:%S,%f").time()
 
 
